@@ -48,7 +48,7 @@ const jobSchema = new mongoose.Schema({
       ref: "Application",
     },
   ],
-});
+}, {timestamps:true}); // to keep track of createdAt and updatedAt timestamps);
 
 
-const Job = mongoose.model("Job", jobSchema);
+export const Job = mongoose.model("Job", jobSchema);
