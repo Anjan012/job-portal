@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./utils/db.js";
+import userRoute from "./routes/user.route.js";
 
 dotenv.config({}); // calling the empty object
 
@@ -20,8 +21,10 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
-
 const PORT = process.env.PORT || 3000;
+
+// apis will come here
+app.use("/api/v1/user", userRoute);
 
 // app.listen takes two parameter one is the port and another is a call abck function 
 app.listen(PORT, () => {

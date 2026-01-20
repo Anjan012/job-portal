@@ -1,4 +1,4 @@
-import User from "../models/user.model.js";
+import { User } from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -7,7 +7,7 @@ export const register = async (req, res) => {
     const { fullname, email, phoneNumber, password, role } = req.body; // destructuring from req.body
 
     // validation
-    if (!!fullname || !email || phoneNumber || !password || !role) {
+    if (!fullname || !email || !phoneNumber || !password || !role) {
       return res.status(400).json({
         message: "Something is missing in the input fields",
         success: false,
