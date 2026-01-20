@@ -142,19 +142,15 @@ export const updateProfile = async (req, res) => {
     const { fullname, email, phoneNumber, bio, skills } = req.body;
     const file = req.file;
 
-    // validation
-    if (!!fullname || !email || phoneNumber || !bio || !skills) {
-      return res.status(400).json({
-        message: "Something is missing in the input fields",
-        success: false,
-      });
-    }
-
     // cloudinary code will come here...
 
+    let skillsArray;
     // skills will come as string from frontend, we need to convert it into array
-    const skillsArray = skills.split(",");
-    const userId = req.userId; // will come from middleware authentication
+    if(skills){
+      skillsArray = skills.split(",");
+    }
+
+    const userId = req.id; // will come from middleware authentication
 
     let user = await User.findById(userId);
 
@@ -166,11 +162,11 @@ export const updateProfile = async (req, res) => {
     }
 
     // updating fields
-    user.fullname = fullname;
-    user.email = email;
-    user.phoneNumber = phoneNumber;
-    user.profile.bio = bio;
-    user.profile.skills = skillsArray;
+    if(fullname) user.fullname = fullname;
+    if(email) user.email = email;
+    if(phoneNumber) user.phoneNumber = phoneNumber;
+    if(bio) user.profile.bio = bio;
+    if(skills) user.profile.skills = skillsArray;
 
     // resume comes later here...
 
