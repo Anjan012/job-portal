@@ -11,7 +11,7 @@ export const registerCompany = async (req, res) => {
       });
     }
 
-    let company = await Company.findOne({ companyName });
+    let company = await Company.findOne({ name: companyName });
 
     if (company) {
       return res.status(400).json({
@@ -47,6 +47,13 @@ export const getCompany = async (req, res) => {
         success: false,
       });
     }
+
+    return res.status(200).json({
+      message: "Companies fetched successfully",
+      companies,
+      success: true,
+    });
+
   } catch (error) {
     console.log(error);
   }
