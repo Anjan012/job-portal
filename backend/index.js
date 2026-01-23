@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import connectDB from "./utils/db.js";
 import userRoute from "./routes/user.route.js";
 import companyRoute from "./routes/company.route.js";
+import jobRoute from "./routes/job.route.js";
 
 dotenv.config({}); // calling the empty object
 
@@ -27,6 +28,7 @@ const PORT = process.env.PORT || 3000;
 // apis will come here
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
+app.use("/api/v1/job", jobRoute);
 
 // app.listen takes two parameter one is the port and another is a call abck function 
 app.listen(PORT, () => {
