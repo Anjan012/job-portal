@@ -25,4 +25,4 @@ const companySchema = new mongoose.Schema({
     }
 }, {timestamps:true}); // to keep track of createdAt and updatedAt timestamps)
 
-export const Company = mongoose.model('Company', companySchema);
+export const Company = mongoose.model('company', companySchema);
