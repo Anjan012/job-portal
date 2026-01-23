@@ -46,7 +46,7 @@ const jobSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-  application: [ // array of application IDs - it keeps track of all the applications submitted for this specific job. it's an array [] because one job can have many applications. Each time someone applies to this job, their application ID gets added to this array.
+  applications: [ // array of application IDs - it keeps track of all the applications submitted for this specific job. it's an array [] because one job can have many applications. Each time someone applies to this job, their application ID gets added to this array.
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Application",
