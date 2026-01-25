@@ -37,7 +37,7 @@ export const applyJob = async (req, res) => {
     }
 
     // create a new application
-    const newApplication = new Application({
+    const newApplication = await Application.create({
       job: jobId,
       applicant: userId,
     });
@@ -59,8 +59,8 @@ export const applyJob = async (req, res) => {
 export const getAppliedJobs = async (req, res) => {
   try {
     const userId = req.id;
-    const application = (await Application.find({ applicant: userId }))
-      .toSorted({ createdAt: -1 })
+    const application = await Application.find({ applicant: userId })
+      .sort({ createdAt: -1 })
       .populate({
         path: "job",
         options: {
@@ -96,7 +96,7 @@ export const getAppliedJobs = async (req, res) => {
 export const getApplicants = async (req, res) => {
     try {
 
-      const {jobId} = req.params;
+      const {id: jobId} = req.params;
       const job = await Job.findById(jobId).populate({
         path:'applications',
         options: {sort:{createdAt:-1}},
@@ -126,7 +126,7 @@ export const getApplicants = async (req, res) => {
 
 export const updateStatus = async (req, res) => {
   try {
-    const status = req.body;
+    const {status} = req.body;
     const applicationId = req.params.id;
 
     if(!status) {
