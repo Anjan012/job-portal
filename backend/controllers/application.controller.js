@@ -93,7 +93,7 @@ export const getAppliedJobs = async (req, res) => {
 };
 
 // admin will see how many applications are there for their job postings
-const getApplicants = async (req, res) => {
+export const getApplicants = async (req, res) => {
     try {
 
       const {jobId} = req.params;
@@ -158,4 +158,4 @@ export const updateStatus = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-}
+};
